@@ -1,0 +1,21 @@
+configurations { compile }
+
+dependencies {
+  compile "org.agmip.ace:ace-core:2.1.2-SNAPSHOT"
+}
+
+publishing {
+  publications {
+    parent(MavenPublication) {
+      nebulaDependencyManagement.fromConfigurations {
+        configurations.compile
+      }
+      artifactId = 'agmip-bom'
+    }
+  }
+  repositories {
+    maven {
+      url "$buildDir/repo"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+publishing {
+  publications {
+    parent(MavenPublication) {
+      nebulaDependencyManagement.fromConfigurations {
+        configurations.compile
+      }
+      artifactId = 'agmip-bom-core'
+    }
+  }
+  repositories {
+    maven {
+      url "$buildDir/repo"
+    }
+  }
+}
