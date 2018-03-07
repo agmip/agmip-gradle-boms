@@ -15,7 +15,7 @@ subprojects {
   apply plugin: 'maven-publish'
   apply plugin: 'nebula.dependency-recommender'
   group = 'org.agmip.bom'
-  version = '2.1.1'
+  version = '2.1.2-SNAPSHOT'
   ext {
     junitVersion = '5.1.0'
     logbackVersion = '1.2.3'
