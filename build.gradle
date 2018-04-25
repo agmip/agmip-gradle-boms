@@ -31,6 +31,7 @@ subprojects {
     vtdxmlLegacy = '2.11'
     jacksonLegacy = '1.9.13'
     guavaLegacy = '19.0'
+    junitLegacy = '4.12'
   }
   dependencies {
     compile "ch.qos.logback:logback-classic:${logbackVersion}"
@@ -50,6 +51,7 @@ subprojects {
     compile "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     compile "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     compile "org.junit.vintage:junit-vintage-engine:${junitVersion}"
+    compile "junit:junit:${junitLegacy}"
   }
 }
 
