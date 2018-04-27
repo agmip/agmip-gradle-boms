@@ -1,15 +1,54 @@
+def mavenCentralReqs = {
+    licenses {
+        license {
+            name 'BSD 3-Clause'
+            url 'https://raw.github.com/agmip/agmip-gradle-boms/master/LICENSE'
+            distribution 'repo'
+        }
+    }
+    developers {
+        developer {
+            id 'agmip-developers'
+            name 'AgMIP Developers'
+            email 'it@agmip.org'
+        }
+    }
+    scm {
+        url 'https://github.com/agmip/agmip-gradle-boms'
+    }
+}    
+
 publishing {
-  publications {
-    parent(MavenPublication) {
-      nebulaDependencyManagement.fromConfigurations {
-        configurations.compile
-      }
-      artifactId = 'agmip-bom-core'
+    publications {
+        AgMIPJCenter(MavenPublication) {
+            nebulaDependencyManagement.fromConfigurations {
+                configurations.compile
+            }
+            artifactId = 'agmip-bom-core'
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('name', 'AgMIP Core Bill-of-Materials')
+                root.appendNode('description', 'The Bill-of-Materials used to build core AgMIP libraries. Use agmip-bom unless you know why you need this.')
+                root.appendNode('url', 'https://agmip.org')
+                root.children().last() + mavenCentralReqs
+            }
+        }
     }
-  }
-  repositories {
-    maven {
-      url "$buildDir/repo"
+}
+
+bintray {
+    user = System.getenv('AGMIP_BINTRAY_USER')
+    key = System.getenv('AGMIP_BINTRAY_KEY')
+    publications = ['AgMIPJCenter']
+    pkg {
+        repo = 'maven'
+        name = 'agmip-bom-core'
+        userOrg = 'agmip'
+        licenses = ['BSD-3-Clause']
+        vcsUrl = 'https://github.com/agmip/agmip-gradle-boms.git'
+        version {
+            name = project.version
+            vcsTag = project.version
+        }
     }
-  }
 }
