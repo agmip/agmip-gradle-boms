@@ -18,7 +18,7 @@ subprojects {
     apply plugin: 'nebula.dependency-recommender'
     apply plugin: 'com.jfrog.bintray'
     group = 'org.agmip.bom'
-    version = '2.1.2'
+    version = '2.1.3-SNAPSHOT'
 
     ext {
         junitVersion = '5.1.0'
