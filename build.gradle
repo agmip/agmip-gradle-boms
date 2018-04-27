@@ -12,11 +12,14 @@ subprojects {
         mavenCentral()
         mavenLocal()
     }
+
     configurations { compile }
     apply plugin: 'maven-publish'
     apply plugin: 'nebula.dependency-recommender'
+    apply plugin: 'com.jfrog.bintray'
     group = 'org.agmip.bom'
-    version = '2.1.2-SNAPSHOT'
+    version = '2.1.2'
+
     ext {
         junitVersion = '5.1.0'
         logbackVersion = '1.2.3'
@@ -34,6 +37,7 @@ subprojects {
         guavaLegacy = '19.0'
         junitLegacy = '4.12'
     }
+    
     dependencies {
         compile "ch.qos.logback:logback-classic:${logbackVersion}"
         compile "joda-time:joda-time:${jodaTimeVersion}"
@@ -56,27 +60,10 @@ subprojects {
     }
 }
 
+
 wrapper {
     gradleVersion = "4.7"
     jarFile = "${project.projectDir}/.gradlew/gradle-wrapper.jar"
 }
 
-def mavenCentralReqs = {
-    licenses {
-        license {
-            name 'BSD 3-Clause'
-            url 'https://raw.github.com/agmip/agmip-gradle-boms/master/LICENSE'
-            distribution 'repo'
-        }
-    }
-    developers {
-        developer {
-            id 'agmip-developers'
-            name 'AgMIP Developers'
-            email 'it@agmip.org'
-        }
-    }
-    scm {
-        url 'https://github.com/agmip/agmip-gradle-boms'
-    }
-}
+
