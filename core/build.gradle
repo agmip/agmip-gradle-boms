@@ -1,3 +1,23 @@
+def mavenCentralReqs = {
+    licenses {
+        license {
+            name 'BSD 3-Clause'
+            url 'https://raw.github.com/agmip/agmip-gradle-boms/master/LICENSE'
+            distribution 'repo'
+        }
+    }
+    developers {
+        developer {
+            id 'agmip-developers'
+            name 'AgMIP Developers'
+            email 'it@agmip.org'
+        }
+    }
+    scm {
+        url 'https://github.com/agmip/agmip-gradle-boms'
+    }
+}    
+
 publishing {
     publications {
         AgMIPJCenter(MavenPublication) {
@@ -5,7 +25,7 @@ publishing {
                 configurations.compile
             }
             artifactId = 'agmip-bom-core'
-            pom.withXML {
+            pom.withXml {
                 def root = asNode()
                 root.appendNode('name', 'AgMIP Core Bill-of-Materials')
                 root.appendNode('description', 'The Bill-of-Materials used to build core AgMIP libraries. Use agmip-bom unless you know why you need this.')
