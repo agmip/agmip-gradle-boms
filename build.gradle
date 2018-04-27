@@ -60,3 +60,23 @@ wrapper {
     gradleVersion = "4.7"
     jarFile = "${project.projectDir}/.gradlew/gradle-wrapper.jar"
 }
+
+def mavenCentralReqs = {
+    licenses {
+        license {
+            name 'BSD 3-Clause'
+            url 'https://raw.github.com/agmip/agmip-gradle-boms/master/LICENSE'
+            distribution 'repo'
+        }
+    }
+    developers {
+        developer {
+            id 'agmip-developers'
+            name 'AgMIP Developers'
+            email 'it@agmip.org'
+        }
+    }
+    scm {
+        url 'https://github.com/agmip/agmip-gradle-boms'
+    }
+}
